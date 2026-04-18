@@ -6,7 +6,7 @@
 /*   By: tolrafan <tolrafan@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 12:50:24 by fratiand          #+#    #+#             */
-/*   Updated: 2026/04/16 21:57:01 by tolrafan         ###   ########.fr       */
+/*   Updated: 2026/04/18 06:44:31 by tolrafan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ int	main(int argc, char **argv)
 	t_stack			*b;
 	t_operations	ops;
 	t_flags			flags;
-
-	if (!ft_init_stacks(&a, &b, argc - 1))
+	int valid_numbers;
+	
+	valid_numbers = count_valid_number(argc, argv, 1);
+	if (!ft_init_stacks(&a, &b, valid_numbers))
 		return (1);
 	ft_operations_init(&ops);
 	ft_memset(&flags, 0, sizeof(t_flags));
