@@ -5,11 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolrafan <tolrafan@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/14 15:18:43 by tolrafan          #+#    #+#             */
-/*   Updated: 2026/04/16 22:00:36 by tolrafan         ###   ########.fr       */
+/*   Created: 2026/04/18 15:09:48 by tolrafan          #+#    #+#             */
+/*   Updated: 2026/04/18 15:09:49 by tolrafan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+ 
 #include "push_swap.h"
 
 int	ft_is_valid_integer(char *str)
@@ -60,6 +61,7 @@ static long long	ft_atoll_convert(const char *str, int start, int sign)
 	i = start;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		
 		if (result > (LLONG_MAX - (str[i] - '0')) / 10)
 		{
 			if (sign == -1)
