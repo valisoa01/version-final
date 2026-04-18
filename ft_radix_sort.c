@@ -11,6 +11,33 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+static int	ft_find_max_value(t_stack *stack)
+{
+	int	max;
+	int	i;
+
+	max = stack->array[0];
+	i = 1;
+	while (i < stack->size)
+	{
+		if (stack->array[i] > max)
+			max = stack->array[i];
+		i++;
+	}
+	return (max);
+}
+
+static int	ft_get_max_bits(t_stack *stack)
+{
+	int	max;
+	int	bits;
+
+	max = ft_find_max_value(stack);
+	bits = 0;
+	while (max >> bits)
+		bits++;
+	return (bits);
+}
 
 static void	ft_sort_by_bit(t_stack *a, t_stack *b, int bit, t_operations *ops)
 {
@@ -35,9 +62,8 @@ void	ft_radix_sort(t_stack *a, t_stack *b, t_operations *ops)
 {
 	int	max_bits;
 	int	bit;
-	int	min_value;
 
-	ft_normalize_stack(a, &min_value);
+	ft_normalize_by_index(a);
 	max_bits = ft_get_max_bits(a);
 	bit = 0;
 	while (bit < max_bits)
@@ -45,5 +71,4 @@ void	ft_radix_sort(t_stack *a, t_stack *b, t_operations *ops)
 		ft_sort_by_bit(a, b, bit, ops);
 		bit++;
 	}
-	ft_restore_stack(a, min_value);
 }

@@ -105,9 +105,8 @@ void		ft_restore_from_b(t_stack *a, t_stack *b, t_operations *ops);
 void		ft_sort_medium(t_stack *a, t_stack *b, t_operations *ops);
 
 void		ft_sort_complex(t_stack *a, t_stack *b, t_operations *ops);
-void		ft_normalize_stack(t_stack *stack, int *min_value);
-void		ft_restore_stack(t_stack *stack, int min_value);
-int			ft_get_max_bits(t_stack *stack);
+void		ft_normalize_by_index(t_stack *stack);
+void		ft_radix_sort(t_stack *a, t_stack *b, t_operations *ops);
 void		ft_radix_sort(t_stack *a, t_stack *b, t_operations *ops);
 
 double		ft_compute_disorder(t_stack *a);

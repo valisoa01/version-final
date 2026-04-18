@@ -12,75 +12,89 @@
 
 #include "push_swap.h"
 
-static int	ft_find_min_value(t_stack *stack)
+#include "push_swap.h"
+
+static void	ft_copy_array(int *dest, int *src, int size)
 {
-	int	min;
 	int	i;
 
-	min = stack->array[0];
-	i = 1;
-	while (i < stack->size)
+	i = 0;
+	while (i < size)
 	{
-		if (stack->array[i] < min)
-			min = stack->array[i];
+		dest[i] = src[i];
 		i++;
 	}
-	return (min);
 }
 
-static int	ft_find_max_value(t_stack *stack)
+static void	ft_sort_array(int *array, int size)
 {
-	int	max;
 	int	i;
+	int	j;
+	int	tmp;
 
-	max = stack->array[0];
-	i = 1;
-	while (i < stack->size)
+	i = 0;
+	while (i < size - 1)
 	{
-		if (stack->array[i] > max)
-			max = stack->array[i];
+		j = i + 1;
+		while (j < size)
+		{
+			if (array[i] > array[j])
+			{
+				tmp = array[i];
+				array[i] = array[j];
+				array[j] = tmp;
+			}
+			j++;
+		}
 		i++;
 	}
-	return (max);
 }
 
-void	ft_restore_stack(t_stack *stack, int min_value)
+static int	ft_find_index(int *sorted, int size, int value)
 {
 	int	i;
 
-	if (min_value == 0)
-		return ;
+	i = 0;
+	while (i < size)
+	{
+		if (sorted[i] == value)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+static void	ft_convert_to_indices(t_stack *stack, int *sorted, int *original)
+{
+	int	i;
+
 	i = 0;
 	while (i < stack->size)
 	{
-		stack->array[i] = stack->array[i] + min_value;
+		stack->array[i] = ft_find_index(sorted, stack->size, original[i]);
 		i++;
 	}
 }
 
-void	ft_normalize_stack(t_stack *stack, int *min_value)
+void	ft_normalize_by_index(t_stack *stack)
 {
-	int	i;
+	int	*sorted;
+	int	*original;
+	int	size;
 
-	*min_value = ft_find_min_value(stack);
-	if (*min_value == 0)
-		return ;
-	i = 0;
-	while (i < stack->size)
+	size = stack->size;
+	sorted = (int *)malloc(sizeof(int) * size);
+	original = (int *)malloc(sizeof(int) * size);
+	if (!sorted || !original)
 	{
-		stack->array[i] = stack->array[i] - *min_value;
-		i++;
+		free(sorted);
+		free(original);
+		return ;
 	}
-}
-
-int	ft_get_max_bits(t_stack *stack)
-{
-	int	max;
-	int	bits;
-
-	max = ft_find_max_value(stack);
-	bits = 0;
-	while (max >> bits)
-		bits++;
-	return (bits);
+	ft_copy_array(original, stack->array, size);
+	ft_copy_array(sorted, stack->array, size);
+	ft_sort_array(sorted, size);
+	ft_convert_to_indices(stack, sorted, original);
+	free(sorted);
+	free(original);
 }
