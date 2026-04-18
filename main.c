@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tolrafan <tolrafan@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/14 12:50:24 by fratiand          #+#    #+#             */
-/*   Updated: 2026/04/18 06:44:31 by tolrafan         ###   ########.fr       */
+/*   Created: 2026/04/18 15:13:03 by tolrafan          #+#    #+#             */
+/*   Updated: 2026/04/18 15:13:06 by tolrafan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	main(int argc, char **argv)
 	t_stack			*b;
 	t_operations	ops;
 	t_flags			flags;
-	int valid_numbers;
-	
+	int				valid_numbers;
+
 	valid_numbers = count_valid_number(argc, argv, 1);
 	if (!ft_init_stacks(&a, &b, valid_numbers))
 		return (1);
